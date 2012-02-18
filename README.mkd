@@ -19,6 +19,8 @@ software.  This is only public for now so its code can be referenced in
 discussions and because I'm too cheap to upgrade to a Github plan that offers
 more private collaborators :)
 
+<img src="http://i.qkme.me/3672a4.jpg"/>
+
 ## Why?
 
 Similar tools at time of writing (October 2011) were
