@@ -14,9 +14,14 @@ class Config(object):
                 exclude_hosts = config['hosts']['exclude']
             except KeyError:
                 exclude_hosts = []
+            try:
+                hosts_dir = config['hosts']['dir']
+            except KeyError:
+                hosts_dir = None
             self.graphite = Graphite(
                 uri=config['graphite_uris']['internal'],
-                exclude_hosts=exclude_hosts
+                exclude_hosts=exclude_hosts,
+                hosts_dir=hosts_dir
             )
         except KeyError:
             raise ValueError, "Configuration must specify graphite_uris: internal"

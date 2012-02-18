@@ -11,9 +11,10 @@ class Graphite(object):
 
     Mostly used for querying API endpoints under /metrics/.
     """
-    def __init__(self, uri, exclude_hosts):
+    def __init__(self, uri, exclude_hosts, hosts_dir=None):
         self.uri = uri
         self.exclude_hosts = exclude_hosts
+        self.hosts_dir = hosts_dir
 
     def query(self, *paths, **kwargs):
         """

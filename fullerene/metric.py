@@ -182,7 +182,10 @@ class Metric(object):
         sep = '.'
         if hostname:
             path = sep.join([hostname, self.path])
-            func = lambda x: sep.join(x.split(sep)[1:])
+            part_snip_count = 1
+            if self.config.graphite.hosts_dir:
+                part_snip_count += self.config.graphite.hosts_dir.count('.') + 1
+            func = lambda x: sep.join(x.split(sep)[part_snip_count:])
         else:
             path = self.path
             func = lambda x: x
@@ -205,6 +208,9 @@ class Metric(object):
         object.
         """
         hostname = hostname.replace('.', '_')
+        if self.config.graphite.hosts_dir:
+            hostname = "%s.%s" % (self.config.graphite.hosts_dir, hostname)
+        print hostname
         # If %-expressions in path, or raw=True, just insert hostname and skip
         # parsing
         group = kwargs.pop('group', "")
