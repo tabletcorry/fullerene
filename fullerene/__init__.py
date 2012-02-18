@@ -185,4 +185,4 @@ def host(domain, host, metric_group, period):
 def render():
     uri = config.graphite.uri + "/render/"
     response = requests.get(uri, params=flask.request.args)
-    return flask.Response(response=response.raw, headers=response.headers)
+    return flask.Response(response=response.raw.read(), headers=response.headers)
